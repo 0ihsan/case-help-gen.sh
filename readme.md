@@ -10,13 +10,13 @@ case $1 in
 		usage; exit 0;;
 
 	(line)       # simple line chart
-		gnuplot -pe '@png; plot "/dev/stdin" using 1:2 with lines' |
-			open -a Preview
+		gnuplot -p -e '@png; plot "/dev/stdin" using 1:2 with lines' |
+			open -a Preview -f
 	;;
 
 	(candle)     # input is shaped like "time  open  low  high  close  volume"
-		gnuplot -pe '@png; plot "/dev/stdin" using 1:2:3:4:5 with candlesticks' |
-			open -a Preview
+		gnuplot -p -e '@png; plot "/dev/stdin" using 1:2:3:4:5 with candlesticks' |
+			open -a preview -f
 	;;
 
 	(*)
